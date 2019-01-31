@@ -5,18 +5,16 @@ import java.util.List;
 import java.util.Scanner;
 
 public class BookController {
+	
+	BookModel bookModel;
+	
 	public Scanner dot1=new Scanner(System.in);
 	public Scanner dot2=new Scanner(System.in);
-	BookModel bookModel=new BookModel();
+	
 	static List<BookModel> bookList=new ArrayList<BookModel>();
 
 	public void add() {
-	   	
-		System.out.println("Please Enter your choice:");
-		System.out.println("1. Add Book Info \n2. Delete Book info \n3. Update Book Info \n4. Search Book Info");
-		int x=dot1.nextInt();
-		
-		if (x==1) {
+	   		bookModel = new BookModel();
 			System.out.println("Please Enter your Info~~");
 			System.out.println("Enter the BookId: ");
 			int xx=dot1.nextInt();
@@ -32,7 +30,7 @@ public class BookController {
 			bookModel.setBookQuantity(yx);
 			bookList.add(bookModel);
 		}
-	}
+	
 	
 	public void display() {
 		
@@ -44,8 +42,37 @@ public class BookController {
 			System.out.print(book.getBookQuantity()+" ");
 			System.out.println();
 		}
+	}	
+	
+	public void delete() {
+	     boolean flag = true;
+			System.out.println("Please Enter the Book ID~~");
+			int aa=dot2.nextInt();
+			if(bookList.isEmpty()) {
+				System.out.println("List is empty");
+			}
+			
+			else {
+				for (BookModel book : bookList) {
+					if(aa==book.getId()){
+						bookList.remove(book);
+						System.out.println("Removed from list");
+						flag=true;
+						break;
+					}
+						flag=false;
+				}
+				
+				if(flag==false) {
+					System.out.println("ID not found");
+				}
+				
+			}
+			
+		}
+		
+		
 	}
 	
-	
-}
+
                                                                                                                               
